@@ -7,11 +7,12 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descrição">
+        android:id="@+id/til_alterar_descricao">
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/til_alterar_descricao"/>
+            android:hint="Descrição"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
