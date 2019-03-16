@@ -2,6 +2,7 @@ package br.edu.ifro.vilhena.ads.tarefas;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import br.edu.ifro.vilhena.ads.tarefas.DAO.AppDatabase;
+import br.edu.ifro.vilhena.ads.tarefas.model.Tarefa;
 
 public class CadastrarTarefaActivity extends AppCompatActivity {
 
@@ -47,6 +51,22 @@ public class CadastrarTarefaActivity extends AppCompatActivity {
             }
         });
 
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validarDescricao()) {
+                    Tarefa tarefa = new Tarefa();
+                    tarefa.setDescricao(tilDescricao.getEditText().getText().toString().trim());
+                    tarefa.setDataHora(dataHora.getTimeInMillis());
+                    AppDatabase.getAppDatabase(CadastrarTarefaActivity.this).tarefaDAO().inserir(tarefa);
+                    Intent intent = new Intent();
+                    intent.putExtra("resposta", "OK");
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }
+        });
+
     }
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
@@ -69,4 +89,15 @@ public class CadastrarTarefaActivity extends AppCompatActivity {
             txtHora.setText(formatacao.format(dataHora.getTime()));
         }
     };
+
+    public boolean validarDescricao(){
+        if (tilDescricao.getEditText().getText().toString().trim().equals("")){
+            tilDescricao.setError("A descrição da tarefa não pode estar em branco!");
+            return false;
+        }
+        tilDescricao.setError(null);
+        return true;
+    }
+
+
 }

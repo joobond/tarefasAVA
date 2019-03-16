@@ -7,31 +7,34 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/til_descricao">
+        android:hint="Descrição">
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição"
-            android:inputType="text"/>
+            android:id="@+id/til_alterar_descricao"/>
     </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_data"
+        android:id="@+id/txt_alterar_data"
         android:text="Selecionar data"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_hora"
-        android:text="Selecionar hora"/>
+        android:id="@+id/txt_alterar_hora"
+        android:text="Selecionar horário"/>
 
-    <Button
-        android:layout_width="wrap_content"
+    <Switch
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_salvar"
-        android:text="SALVAR TAREFA"/>
-
+        android:id="@+id/swt_realizado"
+        android:text="Realizado"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_alterar"
+        android:text="ALTERAR"/>
 
 </LinearLayout>
