@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AlterarTarefaActivity"></activity>
         <activity android:name=".ListarTarefasActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastrarTarefaActivity"></activity>
+        <activity
+            android:name=".CadastrarTarefaActivity"
+            android:parentActivityName=".ListarTarefasActivity" />
     </application>
 
 </manifest>
