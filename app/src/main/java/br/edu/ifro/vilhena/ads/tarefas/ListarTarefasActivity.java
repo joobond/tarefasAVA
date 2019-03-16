@@ -37,7 +37,7 @@ public class ListarTarefasActivity extends AppCompatActivity {
 
         fabCadastrarTarefa.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(ListarTarefasActivity.this, CadastrarTarefaActivity.class);
                 startActivityForResult(intent, 1);
             }
@@ -70,6 +70,7 @@ public class ListarTarefasActivity extends AppCompatActivity {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
                 final Tarefa tarefaSelecionada = (Tarefa) lsvListarTarefas.getAdapter().getItem(info.position);
 
+                deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
@@ -80,7 +81,7 @@ public class ListarTarefasActivity extends AppCompatActivity {
                                 .setPositiveButton("Sim",
                                         new DialogInterface.OnClickListener() {
                                             @Override
-                                            public void onClick(DialogInterface dialog, int i) {
+                                            public void onClick(DialogInterface dialogInterface, int i) {
                                                 AppDatabase.getAppDatabase(ListarTarefasActivity.this).tarefaDAO().deletar(tarefaSelecionada);
                                                 atualizarLista();
                                                 Snackbar.make(findViewById(R.id.layout_listar_tarefas), "Deletado com sucesso", Snackbar.LENGTH_LONG).show();
@@ -92,6 +93,10 @@ public class ListarTarefasActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+
+            }
+        });
+    }
 
     @Override
     protected void onStart() {
